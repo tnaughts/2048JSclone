@@ -43,7 +43,7 @@ Game.prototype.shiftLeft = function(){
 		}
 	}
 }
-Game.prototype.moveLeft == function(){
+Game.prototype.moveLeft = function(){
 	this.shiftLeft();
 	this.combineLeft();
 	this.shiftLeft();
@@ -52,4 +52,6 @@ Game.prototype.moveLeft == function(){
 
 game = new Game();
 console.log(game.gameArray);
+console.log(game.toString());
+game.moveLeft();
 console.log(game.toString());
