@@ -42,4 +42,16 @@ describe("Moving Right", function(){
 		expect(game.gameArray).toEqual([[0,0,0,2], [0,4,0,0], [0,2,0,4], [0,0,0,0]])
 
 	})
+	it("shifts numbers to the right", function(){
+		game = new Game("2000220002222000");
+		game.shiftRight();
+		expect(game.gameArray).toEqual([[0,0,0,2], [0,0,2,2], [0,2,2,2], [0,0,0,2]])
+
+	})
+	it("combines and shifts numbers to the right", function(){
+		game = new Game("2000220002222000");
+		game.moveRight();
+		expect(game.gameArray).toEqual([[0,0,0,2], [0,0,0,4], [0,0,2,4], [0,0,0,2]])
+
+	})
 })

@@ -45,7 +45,7 @@ Game.prototype.combineRight = function(){
 
 Game.prototype.shiftLeft = function(){
 	for (var i = 0; i < 4; i++){
-		for (var j = 3; j >= 0; j --){
+		for (var j = 3; j >= 0; j--){
 			if ((j<4)&&(this.gameArray[i][j] != 0) && (this.gameArray[i][j-1]==0)){
 				this.gameArray[i][j-1] = this.gameArray[i][j];
 				this.gameArray[i][j] = 0;
@@ -55,11 +55,30 @@ Game.prototype.shiftLeft = function(){
 	}
 }
 
+Game.prototype.shiftRight = function(){
+	for (var i = 0; i < 4; i++){
+		for (var j = 0; j <4; j++){
+			if ((j>=0)&&(this.gameArray[i][j] !=0) && (this.gameArray[i][j+1]==0)){
+				this.gameArray[i][j+1] = this.gameArray[i][j];
+				this.gameArray[i][j] = 0;
+				j-=2
+			}
+		}
+	}
+
+}
+
 Game.prototype.moveLeft = function(){
 	this.shiftLeft();
 	this.combineLeft();
 	this.shiftLeft();
 	
+}
+
+Game.prototype.moveRight = function(){
+	this.shiftRight();
+	this.combineRight();
+	this.shiftRight();
 }
 
 
