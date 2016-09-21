@@ -10,13 +10,11 @@ var Game = function(gameSetup){
 Game.prototype.toString = function(){
 	var gameString = "";
 	for (var i = 0; i < 16; i++) {
-		gameString += this.gameArray[Math.floor(i/4)][i%4].toString();
+		gameString += this.gameArray[Math.floor(i/4)][i%4].toString()+",";
 		if (i%4 === 3){
 			gameString += "\n";
 		}
-		else {
-			gameString += ",";
-		}
+		
 	}
 	return gameString;
 }
@@ -139,16 +137,49 @@ Game.prototype.moveDown = function(){
 	this.shiftDown();
 }
 
+Game.prototype.gameOver = function(){
+	for(var i = 0; i<4; i++){
+		for (var j = 0; j<4; j++){
+			if(this.gameArray[i][j]==0){
+				return false;
+			}
+		}
+	}
+	var tempString = this.gameArray.toString();
+	tempGame = new Game();
+	tempGame.gameArray = buildFromComplexString(tempString);
+	startString = tempGame.toString();
+	tempGame.combineUp();
+	tempGame.combineDown();
+	tempGame.combineRight();
+	tempGame.combineLeft();
+	endString = tempGame.toString();
+	if (startString == endString){
+		return true;
+	}
+	return false;
+}
+
+var buildFromComplexString = function(tempString){
+	var stringArray = tempString.split(",");
+	var tempArray = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+	for(var i = 0; i < 4; i++){
+    	for(var j = 0; j < 4; j++){
+    		tempArray[i][j] = parseInt(stringArray[i*4+j]);
+    	}
+    }
+    return tempArray;
+}
 
 
 
 
 
-game = new Game("2000220002222000");
-// console.log(game.gameArray);
-console.log(game.toString());
-game.shiftDown();
-console.log(game.toString());
+// game = new Game("2000220002222000");
+// // console.log(game.gameArray);
+// console.log(game.toString());
+// game.shiftDown();
+// console.log(game.toString());
 // game.combineUp();
 // console.log(game.toString());
 // game.shiftUp();
