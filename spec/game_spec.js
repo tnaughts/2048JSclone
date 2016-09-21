@@ -88,6 +88,12 @@ describe("Moving down", function(){
 		expect(game.gameArray).toEqual([[0,0,0,0], [2,0,0,0], [2,2,0,0], [2,2,2,2]])
 
 	})
+	it("shifts and combines like numbers downwards", function(){
+		game = new Game("2000220002222000");
+		game.moveDown();
+		expect(game.gameArray).toEqual([[0,0,0,0], [0,0,0,0], [2,0,0,0], [4,4,2,2]])
+
+	})
 
 })
 

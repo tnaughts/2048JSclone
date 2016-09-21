@@ -133,6 +133,12 @@ Game.prototype.moveUp = function(){
 	this.shiftUp();
 }
 
+Game.prototype.moveDown = function(){
+	this.shiftDown();
+	this.combineDown();
+	this.shiftDown();
+}
+
 
 
 
