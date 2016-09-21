@@ -43,6 +43,17 @@ Game.prototype.combineRight = function(){
 	}
 }
 
+Game.prototype.combineUp = function(){
+	for (var i = 0; i < 4; i++){
+		for (var j = 0; i <3; i++){
+			if(this.gameArray[j][i] == this.gameArray[j+1][i]){
+				this.gameArray[j][i] = this.gameArray[j][i]*2;
+				this.gameArray[j+1][i] = 0;
+			}
+		}
+	}
+}
+
 Game.prototype.shiftLeft = function(){
 	for (var i = 0; i < 4; i++){
 		for (var j = 3; j >= 0; j--){
@@ -67,7 +78,19 @@ Game.prototype.shiftRight = function(){
 	}
 
 }
+Game.prototype.shiftUp = function(){
+	for (var i = 0; i< 4; i++ ){
+		for (var j = 3; j> 0; j--){  //not using greater than = because we already check j-1
+			if ((j<=3)&&(this.gameArray[j][i] !=0)&& (this.gameArray[j-1][i]== 0)){
+				this.gameArray[j-1][i] = this.gameArray[j][i];
+				this.gameArray[j][i] =0;
+				j+=2
 
+			}
+		}
+	}
+}
+	
 Game.prototype.moveLeft = function(){
 	this.shiftLeft();
 	this.combineLeft();
@@ -81,11 +104,25 @@ Game.prototype.moveRight = function(){
 	this.shiftRight();
 }
 
+Game.prototype.moveUp = function(){
+	this.shiftUp();
+	this.combineUp();
+	this.shiftUp();
+
+
+}
 
 
 
-game = new Game();
-console.log(game.gameArray);
+
+
+
+game = new Game("2000220002222000");
+// console.log(game.gameArray);
 console.log(game.toString());
-game.moveLeft();
+game.shiftUp()
+console.log(game.toString());
+game.combineUp();
+console.log(game.toString());
+game.shiftUp();
 console.log(game.toString());

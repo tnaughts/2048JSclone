@@ -55,3 +55,27 @@ describe("Moving Right", function(){
 
 	})
 })
+
+describe("Moving Up", function(){
+	var game;
+	it("combines 2 numbers upwards that are equivalent", function(){
+		game = new Game("2000220002222000");
+		game.combineUp();
+		expect(game.gameArray).toEqual([[4,0,0,0], [0,2,0,0], [0,2,2,2], [2,0,0,0]])
+	})
+	it("shifts all numbers upwards", function(){
+		game = new Game("2000220002222000");
+		game.shiftUp();
+		expect(game.gameArray).toEqual([[2,2,2,2], [2,2,0,0], [2,0,0,0], [0,0,0,0]])
+	})
+	it("shifts and combines numbers upwards", function(){
+		game = new Game("2000220002222000");
+		game.moveUp();
+		console.log(game.toString());
+		expect(game.gameArray).toEqual([[4,4,2,2], [2,0,0,0], [0,0,0,0], [0,0,0,0]])
+	})
+})
+
+
+
+
