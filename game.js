@@ -45,7 +45,7 @@ Game.prototype.combineRight = function(){
 
 Game.prototype.combineUp = function(){
 	for (var i = 0; i < 4; i++){
-		for (var j = 0; i <3; i++){
+		for (var j = 0; j <3; j++){
 			if(this.gameArray[j][i] == this.gameArray[j+1][i]){
 				this.gameArray[j][i] = this.gameArray[j][i]*2;
 				this.gameArray[j+1][i] = 0;
@@ -108,8 +108,6 @@ Game.prototype.moveUp = function(){
 	this.shiftUp();
 	this.combineUp();
 	this.shiftUp();
-
-
 }
 
 
