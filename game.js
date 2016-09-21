@@ -54,13 +54,24 @@ Game.prototype.combineUp = function(){
 	}
 }
 
+Game.prototype.combineDown = function(){
+	for (var i = 0; i <4; i++){
+		for (var j = 3; j >0; j--){
+			if(this.gameArray[j][i] == this.gameArray[j-1][i]){
+				this.gameArray[j][i] = this.gameArray[j][i]*2;
+				this.gameArray[j-1][i] = 0;
+			}
+		}
+	}
+}
+
 Game.prototype.shiftLeft = function(){
 	for (var i = 0; i < 4; i++){
 		for (var j = 3; j >= 0; j--){
 			if ((j<4)&&(this.gameArray[i][j] != 0) && (this.gameArray[i][j-1]==0)){
 				this.gameArray[i][j-1] = this.gameArray[i][j];
 				this.gameArray[i][j] = 0;
-				j+=2
+				j+=2;
 			}
 		}
 	}
@@ -72,7 +83,7 @@ Game.prototype.shiftRight = function(){
 			if ((j>=0)&&(this.gameArray[i][j] !=0) && (this.gameArray[i][j+1]==0)){
 				this.gameArray[i][j+1] = this.gameArray[i][j];
 				this.gameArray[i][j] = 0;
-				j-=2
+				j-=2;
 			}
 		}
 	}
@@ -84,8 +95,20 @@ Game.prototype.shiftUp = function(){
 			if ((j<=3)&&(this.gameArray[j][i] !=0)&& (this.gameArray[j-1][i]== 0)){
 				this.gameArray[j-1][i] = this.gameArray[j][i];
 				this.gameArray[j][i] =0;
-				j+=2
+				j+=2;
 
+			}
+		}
+	}
+}
+
+Game.prototype.shiftDown = function(){
+	for (var i = 0; i<4; i++){
+		for (var j = 0; j<3; j++){
+			if((j>=0)&&(this.gameArray[j][i]!=0)&&(this.gameArray[j+1][i]== 0)){
+				this.gameArray[j+1][i] = this.gameArray[j][i];
+				this.gameArray[j][i] = 0;
+				j-=2;
 			}
 		}
 	}
@@ -118,9 +141,9 @@ Game.prototype.moveUp = function(){
 game = new Game("2000220002222000");
 // console.log(game.gameArray);
 console.log(game.toString());
-game.shiftUp()
+game.shiftDown();
 console.log(game.toString());
-game.combineUp();
-console.log(game.toString());
-game.shiftUp();
-console.log(game.toString());
+// game.combineUp();
+// console.log(game.toString());
+// game.shiftUp();
+// console.log(game.toString());

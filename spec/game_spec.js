@@ -75,6 +75,21 @@ describe("Moving Up", function(){
 	})
 })
 
+describe("Moving down", function(){
+	it("combines 2 numbers downwards that are equivalent", function(){
+		game = new Game("2000220002222000");
+		game.combineDown();
+		expect(game.gameArray).toEqual([[0,0,0,0], [4,0,0,0], [0,4,2,2], [2,0,0,0]])
+
+	})
+	it("shifts numbers downwards", function(){
+		game = new Game("2000220002222000");
+		game.shiftDown();
+		expect(game.gameArray).toEqual([[0,0,0,0], [2,0,0,0], [2,2,0,0], [2,2,2,2]])
+
+	})
+
+})
 
 
 
