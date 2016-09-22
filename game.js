@@ -113,28 +113,56 @@ Game.prototype.shiftDown = function(){
 }
 	
 Game.prototype.moveLeft = function(){
+	var firstString = this.toString();
 	this.shiftLeft();
 	this.combineLeft();
 	this.shiftLeft();
+	if (firstString != this.toString()){
+		this.addNumber();
+	}
+	if (this.gameOver()){
+		console.log("Game Over!");
+	}
 	
 }
 
 Game.prototype.moveRight = function(){
+	var firstString = this.toString();
 	this.shiftRight();
 	this.combineRight();
 	this.shiftRight();
+	if (firstString != this.toString()){
+		this.addNumber();
+	}
+	if (this.gameOver()){
+		console.log("Game Over!");
+	}
 }
 
 Game.prototype.moveUp = function(){
+	var firstString = this.toString();
 	this.shiftUp();
 	this.combineUp();
 	this.shiftUp();
+	if (firstString != this.toString()){
+		this.addNumber();
+	}
+	if (this.gameOver()){
+		console.log("Game Over!");
+	}
 }
 
 Game.prototype.moveDown = function(){
+	var firstString = this.toString();
 	this.shiftDown();
 	this.combineDown();
 	this.shiftDown();
+	if (firstString != this.toString()){
+		this.addNumber();
+	}
+	if (this.gameOver()){
+		console.log("Game Over!");
+	}
 }
 
 Game.prototype.gameOver = function(){
@@ -171,6 +199,30 @@ var buildFromComplexString = function(tempString){
     return tempArray;
 }
 
+
+Game.prototype.addNumber = function(){
+  var count = 0;
+  for (var i = 0; i < 4; i++){
+    for(var j =0 ; j < 4; j++){
+      if (this.gameArray[i][j] == 0){
+        count++;
+      }
+    }
+  }
+  console.log(count);
+  var rand = Math.floor( Math.random() * count )
+  var count = 0;
+  for (var i = 0; i < 4; i++){
+    for(var j =0 ; j < 4; j++){
+      if (this.gameArray[i][j] == 0){
+        if (count == rand){
+          this.gameArray[i][j] = Math.random() < 0.9 ? 2 : 4;
+        }
+        count++;
+      }
+    }
+  }
+}
 
 
 
