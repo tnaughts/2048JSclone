@@ -1,10 +1,15 @@
 var Game = function(gameSetup){
-	gameSetup = gameSetup || "0000202000000000";
-	this.gameArray = [[0,0,0,0], [2,0,2,0], [0,0,0,0], [0,0,0,0]]; //creates 2d array
-	var gameLength = gameSetup.length
-	for (var i = 0; i<gameLength; i++){
-		this.gameArray[Math.floor(i/4)][i%4] = parseInt(gameSetup.charAt(i)); //creates 2d array
-	}
+  gameSetup = gameSetup || "0000202000000000";
+  this.gameArray = buildArray(gameSetup);
+  this.score = 0
+}
+
+var buildArray = function(gameString){
+  var gameArray = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  for (var i = 0; i < gameString.length; i++){
+    gameArray[Math.floor(i/4)][i%4] = parseInt(gameString.charAt(i));
+  }
+  return gameArray;
 }
 
 Game.prototype.toString = function(){
@@ -24,6 +29,7 @@ Game.prototype.combineLeft = function(){
 		for (var j = 0; j < 4; j++){
 			if (this.gameArray[i][j] == this.gameArray[i][j+1]){
 				this.gameArray[i][j] = this.gameArray[i][j] * 2;
+				this.score += this.gameArray[i][j];
 				this.gameArray[i][j+1] = 0;
 			}
 		}
@@ -35,6 +41,7 @@ Game.prototype.combineRight = function(){
 		for (var j = 3; j>= 0; j--){
 			if (this.gameArray[i][j] == this.gameArray[i][j-1]){
 				this.gameArray[i][j] = this.gameArray[i][j]*2;
+				this.score += this.gameArray[i][j];
 				this.gameArray[i][j-1] = 0;
 			}
 		}
@@ -46,6 +53,7 @@ Game.prototype.combineUp = function(){
 		for (var j = 0; j <3; j++){
 			if(this.gameArray[j][i] == this.gameArray[j+1][i]){
 				this.gameArray[j][i] = this.gameArray[j][i]*2;
+				this.score += this.gameArray[j][i];
 				this.gameArray[j+1][i] = 0;
 			}
 		}
@@ -57,6 +65,7 @@ Game.prototype.combineDown = function(){
 		for (var j = 3; j >0; j--){
 			if(this.gameArray[j][i] == this.gameArray[j-1][i]){
 				this.gameArray[j][i] = this.gameArray[j][i]*2;
+				this.score += this.gameArray[j][i];
 				this.gameArray[j-1][i] = 0;
 			}
 		}
