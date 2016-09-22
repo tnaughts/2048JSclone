@@ -1,0 +1,9 @@
+.box{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: 2px solid darkgray;
+  text-align: center;
+  line-height: 50px;
+  vertical-align: middle;
+}
