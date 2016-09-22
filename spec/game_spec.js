@@ -76,6 +76,7 @@ describe("Moving Up", function(){
 })
 
 describe("Moving down", function(){
+	var game;
 	it("combines 2 numbers downwards that are equivalent", function(){
 		game = new Game("2000220002222000");
 		game.combineDown();
@@ -95,6 +96,17 @@ describe("Moving down", function(){
 
 	})
 
+})
+describe("Game over", function(){
+	var game;
+	it("returns true when no more moves can be made", function(){
+		game = new Game("1234567891234567")
+		expect(game.gameOver()).toBeTruthy();
+	})
+	it("returns false when no more moves can be made", function(){
+		game = new Game("226789112345678")
+		expect(game.gameOver()).toBeFalsy();
+	})
 })
 
 
